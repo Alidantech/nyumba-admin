@@ -21,32 +21,30 @@ const iconMapping = {
 };
 
 const links = [
-  { name: "My Properties", icon: <DashboardIcon />, href: "/home" },
-  { name: "Customers", icon: <PeopleIcon />, href: "/home/customers" },
-  { name: "Requested", icon: <ShoppingCartIcon />, href: "/home/requested" },
-  { name: "Account", icon: <AccountIcon />, href: "/home/account" },
+  { name: "Payments", icon: <DashboardIcon />, href: "/payments" },
+  { name: "Transactions", icon: <PeopleIcon />, href: "/transactions" },
 ];
 
 const savedReports = [
   {
-    name: "Buy Land",
+    name: "Land",
     icon: iconMapping["Buy Land"],
-    href: "/home/properties/land",
+    href: "/properties/land",
   },
   {
     name: "Lease Land",
     icon: iconMapping["Lease Land"],
-    href: "/home/properties/lease-land",
+    href: "/properties/lease-land",
   },
   {
     name: "Real Estate",
     icon: iconMapping["Real Estate"],
-    href: "/home/properties/real-estate",
+    href: "/properties/real-estate",
   },
   {
     name: "Rental",
     icon: iconMapping["Rental"],
-    href: "/home/properties/rental",
+    href: "/properties/rental",
   },
 ];
 
@@ -72,7 +70,7 @@ export const mainListItems = <RenderList items={links} />;
 export const secondaryListItems = (
   <React.Fragment>
     <ListSubheader component="div" inset>
-      Explore Properties
+      Pending Properties
     </ListSubheader>
     <RenderList items={savedReports} />
   </React.Fragment>

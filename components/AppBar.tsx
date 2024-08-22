@@ -137,7 +137,7 @@ export default function CustomAppBar({
         >
           Bal: ${formattedBalance}
         </Typography>
-        <Link href="/home/account">
+        <Link href="/account">
           <IconButton color="inherit">
             <Avatar
               alt={user?.firstName}

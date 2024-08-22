@@ -38,38 +38,6 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
   const { title, description, price, location, images, owner, propertyType } =
     property;
 
-  // Determine the action button based on the property type
-  const renderActionButton = () => {
-    switch (propertyType) {
-      case "lease-land":
-        return (
-          <Button size="small" variant="contained" color="primary">
-            Lease Now
-          </Button>
-        );
-      case "rental":
-        return (
-          <Button size="small" variant="contained" color="primary">
-            Rent Now
-          </Button>
-        );
-      case "land":
-        return (
-          <Button size="small" variant="contained" color="primary">
-            Buy Land
-          </Button>
-        );
-      case "real-estate":
-        return (
-          <Button size="small" variant="contained" color="primary">
-            Buy Now
-          </Button>
-        );
-      default:
-        return null; // No action button for unknown property types
-    }
-  };
-
   return (
     <Card sx={{ maxWidth: 400, margin: 2 }}>
       <Carousel
@@ -131,8 +99,10 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
             View Location
           </Button>
         </a>
-        <Link href={`/home/request/${property._id}`}>
-          {renderActionButton()}
+        <Link href={`/review/${property._id}`}>
+          <Button variant="contained" size="small" color="primary">
+            Review Documents
+          </Button>
         </Link>
       </CardActions>
     </Card>
