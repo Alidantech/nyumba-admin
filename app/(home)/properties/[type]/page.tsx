@@ -11,6 +11,7 @@ import PropertyCard from "@/components/PropertyCard";
 import SearchForm from "@/components/SearchForm";
 import { Console } from "console";
 import { API_URL } from "@/app/url";
+import { revalidatePath } from "next/cache";
 
 const LandsPage = async ({
   params: { type },
@@ -30,13 +31,21 @@ const LandsPage = async ({
 
   const data = await response.json();
 
+  revalidatePath(`/properties/${type}`);
+
+   // Filter properties to only include those with the desired status
+   const statusToDisplay = "pending_Approval"; // Adjust this value to the desired status
+   const filteredProperties = data.filter(
+     (property: any) => property.status === statusToDisplay
+   );
+
   return (
     <div>
-      {data.length > 0 ? (
+      {filteredProperties.length > 0 ? (
         <>
           {/* <SearchForm /> */}
           <Grid container spacing={2}>
-            {data.map((property: any, index: any) => (
+            {filteredProperties.map((property: any, index: any) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <PropertyCard property={property} />
               </Grid>
