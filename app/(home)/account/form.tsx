@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Grid, TextField, Button } from "@mui/material";
+import { Grid, TextField, Button, Avatar } from "@mui/material";
 import { useFormState } from "react-dom";
 import { toast } from "react-toastify";
 import { updateUserDetails } from "./actions";
@@ -10,11 +10,8 @@ interface User {
   firstName: string;
   lastName: string;
   email: string;
-  walletAddress: string;
-  avatar: {
-    url: string;
-    id: string;
-  };
+  role: string;
+  avatar: string;
 }
 
 interface UserFormProps {
@@ -30,17 +27,19 @@ const UserDataForm: React.FC<UserFormProps> = ({ user }) => {
     }
   }, [state]);
 
+  console.log(user);
+
   return (
     <form action={action}>
-      {/* text field with wallet address */}
       <TextField
-        label="Wallet Address"
-        value={user?.walletAddress}
+        label="Role"
+        value={user?.role}
         fullWidth
         variant="outlined"
         disabled
         sx={{ marginBottom: 2 }}
       ></TextField>
+      <Avatar src={user?.avatar} sx={{ width: 100, height: 100, mb: 4 }} />
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -67,6 +66,7 @@ const UserDataForm: React.FC<UserFormProps> = ({ user }) => {
             name="email"
             fullWidth
             variant="outlined"
+            disabled
           />
         </Grid>
         <Grid item xs={12}>

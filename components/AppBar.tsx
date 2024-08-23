@@ -51,20 +51,20 @@ export default function CustomAppBar({
   const pathname = usePathname();
   const breadcrumbParts = pathname.split("/").filter((part) => part);
 
-  const [walletAddress, setWalletAddress] = React.useState<string>("");
-  const [walletBalance, setWalletBalance] = React.useState<string>("0");
-  const [formattedBalance, setFormattedBalance] = React.useState<string>("0");
+  // const [walletAddress, setWalletAddress] = React.useState<string>("");
+  // const [walletBalance, setWalletBalance] = React.useState<string>("0");
+  // const [formattedBalance, setFormattedBalance] = React.useState<string>("0");
 
-  React.useEffect(() => {
-    const fetchWalletInfo = async () => {
-      await getCurrentWalletConnected(setWalletAddress, setWalletBalance);
-      const formatted = await formatBalance(walletBalance);
-      setFormattedBalance(formatted);
-    };
-    fetchWalletInfo();
-    // Add event listener for account changes
-    addWalletListener(setWalletAddress, setWalletBalance);
-  }, [walletBalance]);
+  // React.useEffect(() => {
+  //   const fetchWalletInfo = async () => {
+  //     await getCurrentWalletConnected(setWalletAddress, setWalletBalance);
+  //     const formatted = await formatBalance(walletBalance);
+  //     setFormattedBalance(formatted);
+  //   };
+  //   fetchWalletInfo();
+  //   // Add event listener for account changes
+  //   addWalletListener(setWalletAddress, setWalletBalance);
+  // }, [walletBalance]);
 
   return (
     <AppBar
@@ -124,7 +124,7 @@ export default function CustomAppBar({
                 );
               })}
         </Typography>
-        <Typography
+        {/* <Typography
           sx={{
             border: "1px solid rgba(0, 0, 0, 0.05)",
             backgroundColor: "rgba(255, 255, 255, 0.72)",
@@ -136,12 +136,12 @@ export default function CustomAppBar({
           variant="body2"
         >
           Bal: ${formattedBalance}
-        </Typography>
+        </Typography> */}
         <Link href="/account">
           <IconButton color="inherit">
             <Avatar
               alt={user?.firstName}
-              src={user?.avatar?.url}
+              src={user?.avatar}
               sx={{ width: 32, height: 32 }}
             />
           </IconButton>

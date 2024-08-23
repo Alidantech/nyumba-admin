@@ -3,18 +3,15 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Sidebar from "@/components/SideBar";
 import AppBar from "@/components/AppBar";
-// import { getCurrentUser } from "../actions";
+import { getLoggedInAdmin } from "../login/action";
 
 interface User {
   _id: string;
   firstName: string;
   lastName: string;
   email: string;
-  walletAddress: string;
-  avatar: {
-    url: string;
-    id: string;
-  };
+  role: string;
+  avatar: string;
 }
 
 export default function DashboardLayout({
@@ -29,7 +26,7 @@ export default function DashboardLayout({
   };
 
   // State to manage the current user
-  const [user, setUser] = React.useState<User | null>(null);
+  const [user, setUser] = React.useState<any>(null);
 
   React.useEffect(() => {
     loadUser();
@@ -37,18 +34,7 @@ export default function DashboardLayout({
 
   const loadUser = async () => {
     // Simulate fetching the current user
-    const currentUser: User = {
-      _id: "66b3cdab2880cebad5dadafe",
-      firstName: "Peter",
-      lastName: "Irungu",
-      email: "peteralidante254@gmail.com",
-      walletAddress: "0x15535e1ad8899855072e4e2762b93e3a7c856ef8",
-      avatar: {
-        url: "http://res.cloudinary.com/dogrmupfk/image/upload/v1723113247/file_lcfio6.jpg",
-        id: "file_lcfio6",
-      },
-    };
-
+    const currentUser: any = await getLoggedInAdmin();
     setUser(currentUser);
   };
 

@@ -12,20 +12,11 @@ import {
 } from "@mui/material";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import UserDataForm from "./form";
+import { getLoggedInAdmin } from "@/app/login/action";
 
 const AccountPage = async () => {
   
-  const user: any = {
-    _id: "66b3cdab2880cebad5dadafe",
-    firstName: "Peter",
-    lastName: "Irungu",
-    email: "peteralidante254@gmail.com",
-    walletAddress: "0x15535e1ad8899855072e4e2762b93e3a7c856ef8",
-    avatar: {
-      url: "http://res.cloudinary.com/dogrmupfk/image/upload/v1723113247/file_lcfio6.jpg",
-      id: "file_lcfio6",
-    },
-  };
+  const user: any = await getLoggedInAdmin();
 
   return (
     <Container

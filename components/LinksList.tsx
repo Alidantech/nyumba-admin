@@ -21,8 +21,8 @@ const iconMapping = {
 };
 
 const links = [
-  { name: "Payments", icon: <DashboardIcon />, href: "/payments" },
-  { name: "Transactions", icon: <PeopleIcon />, href: "/transactions" },
+  { name: "Dashboard", icon: <DashboardIcon />, href: "/" },
+  { name: "Buy Requests", icon: <ShoppingCartIcon />, href: "/buy-requests" },
 ];
 
 const savedReports = [

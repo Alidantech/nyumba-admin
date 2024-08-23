@@ -6,6 +6,7 @@ import {
   MenuItem,
   Select,
   FormControl,
+  Box,
 } from "@mui/material";
 import PropertyCard from "@/components/PropertyCard";
 import SearchForm from "@/components/SearchForm";
@@ -18,12 +19,9 @@ const LandsPage = async ({
 }: {
   params: { type: string };
 }) => {
-  const response: any = await fetch(
-    `${API_URL}/properties/${type}`,
-    {
-      cache: "no-store",
-    }
-  );
+  const response: any = await fetch(`${API_URL}/properties/${type}`, {
+    cache: "no-store",
+  });
 
   if (!response.ok) {
     return <Typography variant="h6">Error fetching properties</Typography>;
@@ -33,14 +31,22 @@ const LandsPage = async ({
 
   revalidatePath(`/properties/${type}`);
 
-   // Filter properties to only include those with the desired status
-   const statusToDisplay = "pending_Approval"; // Adjust this value to the desired status
-   const filteredProperties = data.filter(
-     (property: any) => property.status === statusToDisplay
-   );
+  // Filter properties to only include those with the desired status
+  const statusToDisplay = "pending_Approval"; // Adjust this value to the desired status
+  const filteredProperties = data.filter(
+    (property: any) => property.status === statusToDisplay
+  );
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        width: "100%",
+        flex: 1,
+      }}
+    >
       {filteredProperties.length > 0 ? (
         <>
           {/* <SearchForm /> */}
@@ -53,11 +59,23 @@ const LandsPage = async ({
           </Grid>
         </>
       ) : (
-        <Typography variant="h6" align="center">
-          No properties found
-        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            width: "100%",
+            flex: 1,
+          }}
+        >
+          <Typography variant="h6" align="center">
+            No pending {type.split("-").join(" ")} properties
+            found
+          </Typography>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 
